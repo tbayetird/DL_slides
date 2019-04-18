@@ -1,0 +1,667 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Introduction to Deep Learning</title>
+
+		<meta name="description" content=" An introduction to Deep Learning for beginners ">
+		<meta name="author" content="Bayet Théophile">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- Les slides !  -->
+
+				<!-- Slide 1 : introduction du cours  -->
+				<section data-background="#dddddd">
+					<h1> Introduction au Deep Learning</h1>
+					<!-- <h3> pour les débutants </h3>
+					<p>
+						<small> (enfin pas trop) </small>
+					</p> -->
+
+					<aside class="notes">
+						Ceci est une présentation du deep learning, par Théophile Bayet
+
+					</aside>
+				</section>
+
+
+				<!-- Slide 2 : Presentation du plan   -->
+				<section>
+					<h4>Plan de la présentation </h4>
+					<p>
+						<ol>
+							<li><a href="#/2"> Prérequis </a></li>
+							<li><a href="#/3"> IA, Machine learning, Deep Learning </a></li>
+							<li><a href="#/4"> Les spécificités du Deep Learning </a></li>
+							<li><a href="#/5"> L'apprentissage </a></li>
+							<li><a href="#/6"> Pourquoi le Deep Learning ? </a></li>
+							<li><a href="#/7"> Que fait réellement le Deep Learning ? </a></li>
+							<li><a href="#/8"> Conclusions </a></li>
+						</ol>
+					</p>
+
+				</section>
+
+				 <!-- ###############   SECTION PREREQUIS  ###############   -->
+				<section>
+					<h4> Prérequis</h4>
+
+					<section data-background="backgrounds/prerequis.svg">
+						Ou ce qu'il faut connaitre pour ne pas être perdu en Deep Learning
+					</section>
+
+					<section>
+						Mathématiques
+						<p>
+							<small>
+								<ul>
+									<li>Algèbre (variables, coefficients, fonctions, equations linéaires </li>
+									<li>Algèbre Linéaire (vecteurs, matrices, multiplications et normes)</li>
+									<li>Trigonométrie (tanh)</li>
+									<li>Statistique (moyenne, médiane, déviation standard, histogrammes)</li>
+									<li>Calcul (dérivées, dérivées partielles, gradients)</li>
+									<li>Représentations abstraites</li>
+								</ul>
+							</small>
+						</p>
+					</section>
+
+					<section>
+						Programmation et Dévelopement
+						<p>
+							<small>
+								<ul>
+									<li>Notions de base et intermédiaires en programmation</li>
+									<li>Utilisation de bibliothèques tierces </li>
+									<li>Travail en ligne de commandes</li>
+									<li>Notions de bases en hardware (CPU, GPU, RAM)</li>
+								</ul>
+							</small>
+						</p>
+					</section>
+
+					<section>
+						D'autres connaissances utiles avant d'aller plus loin :
+					</section>
+
+					<section>
+						Les données
+						<p>
+							<small>
+								Les données sont au coeur du Deep Learning ; c'est autour de leur
+								apparition massive que le DL a pris vie. Faire du Deep Learning,
+								c'est travailler avec des données ; les manipuler, les comprendre,
+								les transformer, et enfin les interpréter.
+
+								Pour aller plus loin en DL, il est utile de :
+								<ul>
+									<li>savoir ce qu'est une donnée : définition, provenance, génération,
+									artefacts, ... </li>
+									<li>savoir manier des données (plus généralement, via les
+										bibliothèques spécialisées comme numpy et pandas sous python)</li>
+									<li>savoir manier différents formats de données</li>
+									<li>savoir représenter des données de manière efficace (matplotlib au minimum)</li>
+								</ul>
+							</small>
+						</p>
+					</section>
+
+					<section>
+						La data science
+						<p>
+							<small>
+								De nombreuses notions de data science sont importantes à maitriser
+								quand on souhaite faire du DL. Les dénominations sont partagées,
+								et une expérience en data science est toujours un plus pour commencer
+								en DL. Notamment, les notions suivantes sont particulièrement utiles :
+								<ul>
+									<li>les features, feature map, et le data preprocess</li>
+									<li>les problèmes classiques de data science (regression, prediction,
+										classification)</li>
+									<li>le workflow de traitement de données</li>
+								</ul>
+							</small>
+						</p>
+					</section>
+
+				</section>
+				<!-- ###############   SECTION PREREQUIS  ###############   -->
+
+				<!-- ###############   SECTION IA, ML, DL  ###############   -->
+
+				<section>
+					<h4> IA, Machine Learning, Deep Learning</h4>
+
+					<section>
+						L'IA, c'est quoi ?
+						Le Machine Learning, Késako ?
+					</section>
+
+					<section>
+						<h6>						Qu'est-ce qu'on entend par IA ?
+						</h6>
+						<p> </p>
+						<p>
+							ANI  (Artificiel Narrow Intelligence)
+						</p>
+						<p>VS</p>
+						<p>AGI  (Artificial General Intelligence)</p>
+					</section>
+
+					<section data-background ="backgrounds/IA_And_DL.svg" >
+						<p  style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+							Le contexte de l'IA : un vieux terme fourre-tout, qui comprends de nombreux sous-domaines</p>
+						<p  style="height: auto; min-width: 30px; min-height: 30px; width: 400px;">
+							Parmi ceux-ci : le machine learning, qui comprends les "algorithmes d'apprentissage"</p>
+					</section>
+
+					<section data-background="backgrounds/algorithme.svg">
+						Qu'est-ce qu'un algorithme ?
+						<p>
+							<small>
+								<q cite="Wikipedia">Un algorithme est une suite finie et non ambiguë d’opérations ou d'instructions permettant de résoudre un problème ou d'obtenir un résultat</q>
+								   -Wikipedia
+							</small>
+						</p>
+						<p>
+							<small>Un algorithme sera ici considéré comme un modèle, prenant des entrées et présentant un sortie. </small>
+						</p>
+					</section>
+
+					<section>
+						Le Machine Learning
+						<p>
+							<small><q>L'apprentissage automatique (en anglais machine learning, littéralement « l'apprentissage machine ») ou apprentissage statistique est un champ d'étude de l'intelligence artificielle qui se fonde sur des approches statistiques pour donner aux ordinateurs la capacité d' « apprendre » à partir de données, c'est-à-dire d'améliorer leurs performances à résoudre des tâches sans être explicitement programmés pour chacune</q></small>
+							<small>  -Wikipedia</small>
+						</p>
+					</section>
+
+					<section data-background = "backgrounds/paradigme.svg">
+						Le Machine Learning
+						<p  style="height: 10; min-width: 30px; min-height: 30px; width: 500px;"><small>
+							Le machine learning a créé un changement de paradigme dans la programmation classique ; on ne cherchait plus à trouver des réponses à partir de règles et de données définies, mais au contraire à trouver les règles permettant de passer des données aux réponses.
+						</small></p>
+
+					</section>
+
+					<section data-background = "backgrounds/ML_workflow.svg">
+					</section>
+
+
+					<section data-background="backgrounds/types_of_learning.svg">
+						Les branches du machine learning
+						<p>
+							<small>
+								Il existe plusieurs branches dans le machine learning, qui définissent les métodes d'apprentissage et d'interaction avec les données :
+								<ul>
+									<li>Le supervised (ou semi-supervised) learning </li>
+									<li>L' unsupervised learning </li>
+									<li>Le reinforcement learning </li>
+								</ul>
+							</small>
+						</p>
+					</section>
+
+					<section>
+						Exemples en Machine Learning
+						<p>
+							<small>
+								Quelques algorithmes parmi les plus connus :
+								<ul>
+									<li>Support Vector Machine (SVM)</li>
+									<li>Méthode des K Mean</li>
+									<li>Arbres de décision</li>
+								</ul>
+							</small>
+						</p>
+						<p>
+							<small>
+								Pour plus de renseignements : Wikipedia, Youtube, autres...
+							</small>
+						</p>
+					</section>
+
+					<section data-background="backgrounds/errors_of_AI.svg">
+						Les limites du machine learning
+
+						<p>
+							<small>
+								Le Machine Learning n'est pas une boîte à miracles : il existe
+								de nombreux problèmes auxquels ces algorithmes sont confrontés :
+								<ul>
+									<li>le manque de données / d'accès auxs données</li>
+									<li>les données biaisées </li>
+									<li>le manque de ressources </li>
+									<li>les mauvais choix (d'algorithmes, d'outils, d'utilisateurs)</li>
+								</ul>
+							</small>
+						</p>
+					</section>
+
+					<section>
+						<h4>Conclusions sur le Machine Learning : </h4>
+						<p>
+							<ul>
+								<li>C'est un des composants majeurs de l'IA </li>
+								<li>Permet l'apprentissage de tâches spécifiques </li>
+								<li>Domaine d'applications quasi-infini, énorme potentiel</li>
+								<li>Mais soumis à de nombreuses contraintes techniques</li>
+							</ul>
+							<small>plus d'informations : https://github.com/zekelabs/data-science-complete-tutorial</small>
+						</p>
+					</section>
+
+				</section>
+				<!-- ###############   SECTION IA, ML, DL  ###############   -->
+
+				<!-- ###############   SECTION DL SPECIFICITES  ###############   -->
+				<section>
+					<h4>Les spécificités du Deep Learning</h4>
+
+					<section>
+						En quoi le Deep Learning se détache-t-il des autres méthodes du Machine Learning ?
+					</section>
+
+					<section>
+						L'arme du Deep Learning
+						<small> Le deep Learning utilise une méthode particulière du machine learning : le neurone (anciennement perceptron)</small>
+						<p>
+							<small>
+								Les neurones sont des modèles issus du machine learning, inspirés des neurones humains (bien que loin de les égaler)
+								La spécificité du Deep Learning est d'organiser ces neurones en plusieurs couches, créant ainsi une hiérarchie de modèles d'apprentissage.
+								Un modèle en Deep Learning est donc une hiérarchie de modèles de machine learning !
+							</small>
+						</p>
+					</section>
+
+					<section data-background="backgrounds/DL_model.svg">
+						Le modèle architectural du Deep Learning
+						<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+						<small> En Deep Learning, une couche est donc un ensemble de modèles
+						partageant des entrées communes. Ces couches se succèdent, on en
+						distingue trois types :
+						</small>
+						</p>
+						<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+							<small>
+								- La couche d'entrée (Embedding Layer)
+							</small>
+						</p>
+						<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+							<small>
+								- La couche de sortie
+							</small>
+						</p>
+						<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+							<small>
+								- Les couches intermédiaires (Hidden Layer)
+							</small>
+						</p>
+					</section>
+
+					<section data-background="backgrounds/DL_model_with_neurons.svg">
+						Le modèle architectural du Deep Learning
+						<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+							<small>
+								Les couches d'un modèle en Deep Learning sont en fait composées
+								de neurones, d'où l'appellation "réseaux de neurones" !
+							</small>
+						</p>
+						<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+							<small>
+								Ces neurones sont les éléments qui permettent au réseau d'apprendre :
+								chaque neurone est un modèle d'apprentissage. Ils prennent en entrée
+								une ou plusieurs sorties des neurones des couches précédentes et
+								leur sortie est envoyée vers les couches qui suivent. A l'exception
+								des couches d'entrée et de sortie : elles sont particulières car
+								n'interagissent pas qu'avec d'autres couches.
+							</small>
+						</p>
+
+					</section>
+
+					<section data-background="backgrounds/DL_workflow.svg">
+						Le workflow en Deep Learning
+						<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+							<small>
+								En Deep Learning, le workflow est un peu plus épuré par rapport
+								au machine learning. Le modèle va lui-même se charger de
+								transformer les images et d'en extraire les features utiles.
+							</small>
+						</p>
+						<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+							<small>
+								Le modèle est donc bien plus indépendant que ses homologues en
+								machine learning : il décide lui-même de l'information utile
+								dans les données fournies ! C'est ce qui a poussé les premières
+								publications à parler de 'machines autonomes'. Pourtant nous
+								sommes encore loin des machines autonomes...
+							</small>
+						</p>
+
+					</section>
+
+				</section>
+				<!-- ###############   SECTION DL SPECIFICITES  ###############   -->
+
+				<!-- ###############   SECTION LEARNING  ###############   -->
+				<section>
+						<h4>L'apprentissage </h4>
+						<section>
+							Comment les modèles apprennent-ils ?
+							Quels processus sont à l'oeuvre lors de l'entrainement ?
+						</section>
+
+						<section data-background="backgrounds/DL_model_with_neurons.svg">
+							L'apprentissage : oui mais où ?
+							<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+								<small>
+									Rappel : les couches d'un modèle sont composés de neurones, qui
+									sont eux-même des modèles en machine learning !
+								</small>
+							</p>
+							<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+								<small>
+									Ainsi, ce sont ces neurones en réalité qui vont 'apprendre' !
+									Ces derniers apprendront à réagir de manière différente aux
+									inputs qui lui seront fournis, en fonction des sorties des
+									précédents neurones
+									Mais comment ces neurones apprennent-ils la manière de réagir
+									à chacun des inputs ?
+								</small>
+							</p>
+						</section>
+
+						<section data-background="backgrounds/Neuron.svg">
+							Le neurone, késako ?
+							<p>
+								<small>
+									Les neurones sont des modèles d'apprentissage non linéaires
+									qui se basent sur des poids - des variables internes, qui
+									influent sur la sortie du neurone.
+								</small>
+							</p>
+							<p>
+								<small>
+									Ces poids sont modifiés au fur et à mesure de l'apprentissage
+									pour que la sortie du neurone corresponde le plus souvent
+									possible et le plus fidèlement possible aux sorties attendues
+								</small>
+							</p>
+						</section>
+
+						<section data-background="backgrounds/Layers_weights.svg">
+							Les poids dans une couche
+							<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+								<small>
+									Rappel : les couches d'un modèle sont composés de neurones, qui
+									sont eux-même composés de poids, ces poids variant selon les
+									données rencontrées et influant sur les sorties du neurone
+									concerné.
+								</small>
+							</p>
+							<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+								<small>
+									On peut donc ramener l'ensemble 'couches et neurones' aux poids
+									de ces derniers quand on cherche à comprendre comment
+									l'apprentissage a lieu dans une couche. Une couche est alors
+									assimilable à l'ensemble des poids qui composent ses neurones.
+								</small>
+							</p>
+						</section>
+
+						<section data-background="backgrounds/Training_weights.svg">
+							L'entrainement, ou comment modifier les poids
+							<p style="height: 10; min-width: 30px; min-height: 30px; width: 450px;">
+								<small>
+									Afin de déterminer si un modèle est compétent ou pas, il faut
+									définir une métrique d'efficacité dudit modèle. Cette métrique
+									est la Loss Function, ou fonction de perte. On peut alors pour
+									chaque image, calculer un score par rapport à la sortie attendue
+								</small>
+							</p>
+							<p style="height: 10; min-width: 30px; min-height: 30px; width: 450px;">
+								<small>
+									Ce score (loss score) est utilisé pour modifier les
+									poids du réseau de neurones afin que la prochaine sortie ait
+									un score moins élevé. L'outil qui transforme le score en une
+									modification des poids est appelé Optimizer (optimiseur en
+									français, du nom de sa fonction : modifier les poids pour
+									optimiser la sortie du réseau )
+								</small>
+							</p>
+						</section>
+
+			</section>
+
+				<!-- ###############   SECTION LEARNING  ###############   -->
+
+				<!-- ###############   SECTION WHY DL   ###############   -->
+				<section>
+					<h4>Pourquoi le Deep Learning </h4>
+					<section>
+						Pourquoi le Deep Learning fonctionne-t-il aussi bien ?
+						Pourquoi n'en entend-t-on parler que depuis peu ?
+					</section>
+
+					<section>
+						Pour la petite histoire du Deep Learning ...
+						<p style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+							<small style="height: 10; min-width: 30px; min-height: 30px; width: 400px;">
+								<ul>
+									<li>1943 : Réseaux de neurones </li>
+									<li>1957 : Perceptron </li>
+									<li>1974 - 1986 : Backpropagation, RNN</li>
+									<li>1989 - 1998 : CNN, MNIST, LSTM, BRNN</li>
+									<li>2006 : 'Deep Learning', Deep Beliefs Networks</li>
+									<li>2009 : ImageNet</li>
+									<li>2012 : AlexNet, Dropout</li>
+									<li>... </li>
+								</ul>
+								<ul>
+									<li>1960 : Mark 1 Perceptron</li>
+									<li>2002 : Torch </li>
+									<li>2007 : Cuda </li>
+									<li>2008 : Theano </li>
+									<li>2014 : Caffe </li>
+									<li>2015 : TensorFlow 0.1</li>
+									<li>2017 : PyTorch 0.1</li>
+									<li>... </li>
+								</ul>
+							</small>
+						</p>
+						Pourquoi tant de temps entre la théorie et les outils ?
+					</section>
+
+					<section data-background="backgrounds/computer_speed.svg">
+
+					</section>
+
+					<section data-background="backgrounds/why_now.svg">
+						Mais aussi ...
+						<p>
+							<small>
+								<ul>
+									<li>Améliorations des capacités de stockage </li>
+									<li>Améliorations des capacités en mémoire vive (cache) </li>
+									<li>Enorme avancées en captation, tri, partage des données </li>
+								</ul>
+								<p></p>
+								Or, ce sont justement les ingrédients qui empêchaient le deep learning
+								de se développer : le manque de données, la difficulté de stocker
+								de gros volumes de données, la capacité de calcul
+							</small>
+						</p>
+					</section>
+
+				</section>
+				<!-- ###############   SECTION WHY DL  ###############   -->
+
+				<!-- ###############   SECTION HOW DL  ###############   -->
+				<section>
+						<h4>Que fait réellement le Deep Learning ? </h4>
+
+						<section>
+							Que se passe-t-il réellement dans les couches d'un réseau de neurones ?
+							Qu'est-il possible de faire ou pas avec un réseau ?
+						</section>
+
+						<section>
+							Caractéristiques du Deep Learning
+							<p>
+								<small>
+									<ul>
+										<li>Compositions de multiples transformations non linéaires </li>
+										<li>Construction de plusieurs niveaux d'asbtraction qui aident à
+											donner un sens aux données </li>
+											<li>Construction hiérarchique des caractéristiques et représentations  </li>
+										</ul>
+										<p></p>
+										Le Deep Learning permet de modifier la représentation des
+										données initiales, pour les présenter sous une forme qui
+										fera apparaître la solution au problèmep posé au réseau
+									</small>
+								</p>
+						</section>
+
+							<section data-background="backgrounds/filtres.svg">
+								<!-- Caractéristiques du Deep Learning -->
+
+							</section>
+
+							<section>
+								Les couches d'un modèle
+								<p>
+									<small>
+										Les couches d'un modèle pour la vision par ordinateur
+										s'organisent ainsi :
+										<ul>
+											<li>Basses couches : patterns simples (traits, coins) </li>
+											<li>Couches intermédiaires : patterns modérés (formes, contours ) </li>
+											<li>Couches profondes : patterns complexes (motifs,parties
+												d'objets )</li>
+										</ul>
+									</small>
+									<p></p>
+									<p><small>
+										L'organisation en couches permet une représentation
+										hiérarchique des patterns à reconnaitre. Ces patterns, de plus
+										en plus complexes, sont utilisés pour reconnaitre les éléments
+										à l'image. Ce sont ces patterns qui sont appris par les neurones
+									</small> </p>
+								</p>
+							</section>
+
+							<section>
+								Ce que fait ou non le Deep Learning
+								<p>
+									<small>
+										On a vu que les modèles en Deep Learning étaient capables d'
+										identifier des patterns simples comme complexes. Ceci est
+										valable en traitement d'image, mais aussi de texte, d'audio,
+										etc...
+										A partir de là, il est bon de rappeler les limitations du
+										Deep Learning :
+										<ul>
+											<li>Pas de prévision du futur </li>
+											<li>Pas ou peu de capacité face à des données nouvelles </li>
+											<li>Pas de performance sur une tâche trop générale </li>
+										</ul>
+
+										Si les modèles développés récemment arrivent à exceller dans
+										certains domaines complexes, ils restent limités par les
+										contraintes énoncées ci-dessus.
+
+									</small>
+								</p>
+								<p>
+									<small>
+										Remarque : Ces limitations ne sont pas physiques ou matérielles,
+										mais conceptuelles, internes au concept même du Deep learning
+										tel qu'il existe aujourd'hui.
+
+									</small>
+								</p>
+							</section>
+
+				</section>
+
+			</section>
+				<!-- ###############   SECTION HOW DL  ###############   -->
+
+				<!-- ###############   SECTION HOW DL  ###############   -->
+				<section>
+						<h4>Conclusion </h4>
+						<small>
+						<p>
+							Le Deep Learning est un outil puissant, qui a révolutionné le
+							monde de l'intelligence artificielle depuis sa percée dans les
+							années 2010.
+						</p>
+						<p>
+							Cet outil est soumis à des limitations qui empêchent pour le moment
+							le développement d'Intelligence Artificielles telles qu'on les voit
+							souvent présentées dans les récits futuristes.
+						</p>
+						<p>
+							Pour autant, dans bien des domaines spécialisés, des algorithmes
+							de DL ont réussi à égaler voir surpasser l'humain, principalement
+							sur des problèmes complexes.
+						</p>
+						<p>
+							Pourtant, les tâches 'simples' réalisées par les enfants en bas âge
+							sont encore innateignables pour ces algorithmes.
+						</p>
+						</small>
+				</section>
+
+				<!-- ###############   SECTION CONCLUSION  ###############   -->
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				// data-background="#dddddd"
+
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
